@@ -17,15 +17,14 @@ def generate_plus_or_minus(sign):
 def generate_bell_state(index):
     circuit = cirq.Circuit()
     res_qubit = [cirq.LineQubit(0), cirq.LineQubit(1)]
-    if index % 2 == 1:
-        circuit.append([
-            cirq.X(res_qubit[0]),
-        ])
-
     circuit.append([
         cirq.H(res_qubit[0]),
         cirq.CNOT(res_qubit[0], res_qubit[1]),
     ])
+    if index % 2 == 1:
+        circuit.append([
+            cirq.Z(res_qubit[0]),
+        ])
 
     if index > 1:
         circuit.append([
